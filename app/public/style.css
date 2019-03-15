@@ -1,0 +1,147 @@
+body {
+    font-family: Palatino,Times,arial,STSong,SimSun,serif;
+    font-weight:400;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: #111;
+    outline: 0;
+    text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    font-family: Palatino,STSong,SimSun,serif;
+    font-weight: 600;
+    letter-spacing: -.01em;
+}
+.header {
+    width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+.header__title {
+    font-size: 48px;
+    font-weight: 300;
+    margin: 10px 0 10px 0;
+}
+.header__desc {
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+.content {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+}
+.main {
+    flex: 1;
+}
+.sidebar {
+    width: 300px;
+    padding-left: 16px;
+}
+.post-card {
+    margin-top: 10px;
+}
+.post-card__title {
+    font-size: 20px;
+    line-height: 20px;
+}
+.post-card__summary {
+    height: 48px;
+    margin-top: 15px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #888;
+}
+.post__extra,
+.post-card__extra {
+    color: #777;
+    margin-top: 10px;
+}
+.post__date::after,
+.post-card__date::after {
+    content: '|';
+    padding: 0 5px;
+    color: #ccc;
+}
+.post__date--no::after,
+.post-card__date--no::after {
+    display: none;
+}
+.post-card__continue-reading {
+    color: #a62425;
+}
+.post__title {
+    font-size: 30px;
+    line-height: 42px;
+}
+.post__content {
+    font-size: 17px;
+    line-height: 28px;
+    margin-bottom: 30px;
+}
+.post__meta {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.post-nav {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e8e8e8;
+    /* border-bottom: 1px solid #e8e8e8; */
+}
+.post-nav__prev,
+.post-nav__next {
+    padding: 0 12px;
+}
+
+.post-nav__pager {
+    display: block;
+    padding: 32px 0;
+}
+.post-nav__label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #bfbfbf;
+}
+.post-nav__label--end {
+    justify-content: flex-end;
+}
+.post-nav__title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #262626;
+    transition: color .35s ease;
+}
+.widget__title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+.widget__content {
+    color: rgba(0,0,0,.54);
+}
+.pagination {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.footer {
+    width: 980px;
+    margin: auto;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 16px;
+}

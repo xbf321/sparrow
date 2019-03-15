@@ -1,0 +1,20 @@
+.p-create {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    .save-bar {
+        position: relative;
+        height: 56px;
+        padding: 12px 24px 12px 0;
+        background: #fff;
+        border-bottom: 1px solid #e8e8e8;
+        z-index: 999;
+    }
+    .editor-wrapper {
+        width: 100%;
+        height: calc(100vh - 104px);
+        overflow: auto;
+        padding-top: 20px;
+    }
+}

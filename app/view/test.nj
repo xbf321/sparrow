@@ -1,0 +1,5 @@
+{% extends "_layout.nj" %}
+
+{% block body %}
+    this is body
+{% endblock %}

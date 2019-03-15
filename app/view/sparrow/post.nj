@@ -1,0 +1,34 @@
+{% extends "./_layout.nj" %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+{% block body %}
+    <div class="post">
+        <h1 class="post__title">{{ post.title }}</h1>
+        <div class="post__meta">
+            更新：<time class="post__date"><a href="{{ post.url}}" title="{{ post.title}}">{{ post.updated_at_short}}</a></time>发布：<time class="post__date"><a href="{{ post.url}}" title="{{ post.title}}">{{ post.created_at_short }}</a></time><span class="post__date post__date--no">{{ post.view_num}} 次围观</span>
+        </div>
+        <div class="post__content">
+            {{ post.markdown_content }}
+        </div>
+        
+        <div class="post-nav">
+            <div class="post-nav__prev">
+                <a class="post-nav__pager">
+                    <div class="post-nav__label">上一篇</div>
+                    <h6 class="post-nav__title">插入本地视频、查找替换、文本翻译，这几个功能让你的创作更easy！</h6>
+                </a>
+            </div>
+            <div class="post-nav__next">
+                <a class="post-nav__pager">
+                    <div class="post-nav__label post-nav__label--end">下一篇</div>
+                    <h6 class="post-nav__title">插入本地视频、查找替换、文本翻译，这几个功能让你的创作更easy！</h6>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block sidebar %}
+    {{ toc }}
+{% endblock %}

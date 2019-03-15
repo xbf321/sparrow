@@ -1,0 +1,7 @@
+{% extends "./_layout.nj" %}
+{% block body %}
+    {% for post in posts %}
+        {% include "./partials/post-card.nj" %}
+    {% endfor %}
+    {% include "./partials/pagination.nj" %}
+{% endblock %}

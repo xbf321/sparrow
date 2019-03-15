@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{{ siteConfig.title }}{% endblock %}
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href='/public/asset/style.css' type='text/css' media='all'/>
+    {% block header %}{% endblock %}
+  </head>
+  <body>
+        <div class="header">
+            <h1 class="header__title"><a href="/" title="{{ siteConfig.title }}">{{ siteConfig.title }}</a></h1>
+            <h2 class="header__desc">{{ siteConfig.desc }}</h2>
+        </div>
+        <div class="content">
+            <div class="main">
+                {% block body %}{% endblock %}
+            </div>
+            <div class="sidebar">
+                {% block sidebar %}
+                    {% include "./partials/about.nj" %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="footer">
+            &copy;2004-2019
+        </div>
+        {% block footer %}{% endblock %}
+  </body>
+</html>

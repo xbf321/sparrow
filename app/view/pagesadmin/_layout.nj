@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}Sparrow Admin{% endblock %}
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ ctx.loadManifest('admin.css') }}" type="text/css" media="all"/>
+    {% block header %}{% endblock %}
+  </head>
+  <body>
+        <div id="app"></div>
+        {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
+  </body>
+</html>

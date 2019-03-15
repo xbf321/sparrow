@@ -1,0 +1,4 @@
+{% extends "./_layout.nj" %}
+{% block footer %}
+    <script src="{{ ctx.loadManifest('admin.js') }}"></script>
+{% endblock %}

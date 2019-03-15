@@ -1,4 +1,4 @@
-
+'use strict';
 
 const path = require('path');
 
@@ -11,16 +11,30 @@ module.exports = appInfo => {
     // add your config here
     config.middleware = [];
 
-    // config.view = {
-    //     defaultViewEngine: 'nunjucks',
-    //     mapping: {
-    //         '.nj': 'nunjucks'
-    //     }
-    // };
+    config.view = {
+        // cache: false,
+        // root: [
+        //     path.join(appInfo.baseDir, 'app/view'),
+        //     path.join(appInfo.baseDir, ''),
+        // ].join(','),
+        defaultExtension: '.nj',
+        defaultViewEngine: 'nunjucks',
+        mapping: {
+            '.nj': 'nunjucks'
+        }
+    };
 
-    // config.manifest = {
-    //     default: path.join(appInfo.baseDir, '/app/public/manifest.json')
-    // };
+    config.themePath = '';
+
+    config.security = {
+        csrf: {
+            enable: false,
+        }
+    };
+
+    config.manifest = {
+        default: path.join(appInfo.baseDir, '/app/public/assets/manifest.json')
+    };
 
     return config;
 };
