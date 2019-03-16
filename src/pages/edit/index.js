@@ -1,52 +1,63 @@
 import * as React from 'react';
-import { Button } from 'antd';
-
-import { observable, toJS } from "mobx";
+import { Button, message, Icon } from 'antd';
+import axios from 'utils/axios';
+import { observable, action } from "mobx";
 import { observer } from 'mobx-react';
 import Form from './Form';
-// import ReactMarkdown from 'react-markdown';
 import './style.scss';
 
 @observer
 class Create extends React.Component {
     @observable postInfo = {};
+    @observable isLoadingForBtn = false;
     constructor(props) {
         super(props);
         const { uuid } = props.match.params;
         this.uuid = uuid;
+        this.endpoint = `/api/posts/${this.uuid}`;
     }
     async componentWillMount () {
         await this.fetchData();
     }
     async fetchData() {
-        console.info(this.uuid);
-        // Object.assign(this.queryParam, params);
-        // this.list = (await axios.get('/api/posts', {
-        //     params: this.queryParam
-        // }) || {});
+        this.postInfo = await axios.get(this.endpoint);
+        if (!this.postInfo) {
+            // 跳转到错误页面
+        }
     }
-    handleSave = () => {
-        console.info('save',toJS(this.postInfo));
+    @action
+    async handleSave() {
+        this.isLoadingForBtn = true;
+        const result = await axios.put(this.endpoint, this.postInfo);
+        if (result) {
+            message.success('更新成功。');
+        }
+        this.isLoadingForBtn = false;
     }
+    @action
     handleFormChange = (info = {}) => {
         this.postInfo = Object.assign({}, this.postInfo, info);
     }
     render() {
-        const { title = '', content = ''} = this.postInfo;
+        const { title = '', markdown_content = ''} = this.postInfo;
         return (
             <div className="p-create">
-                <div className="save-bar">
-                    <Button type="primary" onClick={this.handleSave}>发布</Button>
+                <div className="action-bar">
+                    <Icon type="setting" />
+                    <Button
+                        loading={this.isLoadingForBtn}
+                        icon="cloud-upload"
+                        type="primary"
+                        onClick={this.handleSave.bind(this)}
+                    >发布</Button>
                 </div>
                 <div className="editor-wrapper">
                     <Form
                         title={title}
-                        content={content}
+                        markdown_content={markdown_content}
                         onChange={this.handleFormChange}
                     />
                 </div>
-            
-                {/* <ReactMarkdown source={input} /> */}
             </div>
         );
     }

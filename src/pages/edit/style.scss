@@ -3,7 +3,9 @@
     width: 100%;
     flex-direction: column;
 
-    .save-bar {
+    .action-bar {
+        display: flex;
+        justify-content: flex-end;
         position: relative;
         height: 56px;
         padding: 12px 24px 12px 0;

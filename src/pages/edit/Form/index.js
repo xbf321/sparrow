@@ -1,34 +1,26 @@
 import * as React from 'react';
 import { Input } from 'antd';
-import { Controlled as CodeMirror } from 'react-codemirror2';
-import { observable } from "mobx";
+import { UnControlled as CodeMirror } from 'react-codemirror2';
 import { observer } from 'mobx-react';
 require('codemirror/mode/markdown/markdown');
 import './style.scss';
 
 @observer
 class Form extends React.Component {
-    @observable title = this.props.title;
-    @observable content = this.props.content;
-    handleChange = () => {
-        const { onChange = () => {} } = this.props;
-        onChange({
-            title: this.title,
-            content: this.content,
-        });
-    }
     render() {
+        const { title, markdown_content, onChange = () => {} } = this.props;
         return (
             <div className="p-create-form">
                 <div className="title-wrapper">
                     <div className="title-wrapper__line">
                         <Input
-                            defaultValue={this.title}
+                            value={title}
                             className="title-wrapper__input"
                             placeholder="无标题"
                             onChange={(e) => {
-                                this.title = e.target.value;
-                                this.handleChange();
+                                onChange({
+                                    title: e.target.value,
+                                });
                         }} />
                     </div>
                 </div>
@@ -37,13 +29,11 @@ class Form extends React.Component {
                     options={{
                         mode: 'markdown',
                     }}
-                    value={this.content}
-                    onBeforeChange={(editor, data, value) => {
-                        this.content = value;
-                    }}
+                    value={markdown_content}
                     onChange={(editor, data, value) => {
-                        this.content = value;
-                        this.handleChange();
+                        onChange({
+                            markdown_content: value,
+                        });
                     }}
                 />
             </div>

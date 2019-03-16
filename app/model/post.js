@@ -8,22 +8,25 @@ module.exports = app => {
             primaryKey: true,
             autoIncrement: true,
         },
-        uuid: {
-            type: STRING,
-            set() {
-                return uuidv1();
-            },
+        uuid: STRING,
+        title: {
+            type: STRING(30),
+            set(value) {
+                if (!value) {
+                    value = '无标题';
+                }
+                return this.setDataValue('title', value);
+            }
         },
-        title: STRING(30),
-        markdown_content: TEXT,
         pathname: STRING,
+        markdown_content: {
+            type: TEXT,
+        },
         summary: TEXT,
         content: TEXT,
         type: INTEGER,
         status: INTEGER,
-        created_year: {
-            type: INTEGER,
-        },
+        created_year: INTEGER,
         created_month: {
             type: INTEGER,
             set(month) {
@@ -53,6 +56,22 @@ module.exports = app => {
         },
         freezeTableName: true,
     });
+
+    Post.createEmpty = async function(userId) {
+        const uuid = uuidv1().replace(/[-]/g, '');
+        const now = (new Date());
+        return await this.create({
+            uuid,
+            user_id: userId,
+            title: '无标题',
+            created_year: now.getFullYear(),
+            created_month: now.getMonth() + 1,
+            pathname: uuid,
+            summary: '',
+            markdown_content: '',
+            content: '',
+        });
+    }
 
     Post.findByPathname = async function(year, month, pathname) {
         return await this.findOne({
