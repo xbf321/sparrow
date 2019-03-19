@@ -1,6 +1,6 @@
 module.exports = app => {
     const { STRING, TEXT, INTEGER } = app.Sequelize;
-    const SiteConfig = app.model.define('site_config', {
+    const Settings = app.model.define('settings', {
         id: {
             type: INTEGER,
             primaryKey: true,
@@ -8,12 +8,11 @@ module.exports = app => {
         },
         key: STRING,
         value: TEXT,
-        desc: STRING,
     }, {
         freezeTableName: true,
     });
 
-    SiteConfig.findByKey = async function(key) {
+    Settings.findByKey = async function(key) {
         return await this.findOne({
             where: {
                 key,
@@ -21,5 +20,5 @@ module.exports = app => {
         });
     };
 
-    return SiteConfig;
+    return Settings;
 };

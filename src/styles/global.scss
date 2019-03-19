@@ -3,9 +3,9 @@ html {
     padding: 0;
     margin: 0;
     width: 100%;
-    // background: #fafafa;
     scroll-behavior: smooth;
     color: #595959;
+    background: #f0f2f5;
     font-family: Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 .g-viewport {
@@ -14,19 +14,33 @@ html {
     flex-grow: 1;
     max-height: 100%;
 }
-.g-sidebar {
-    background: #f4f8fb;
-    display: flex;
-    flex: 0 0 280px;
-    flex-direction: column;
-    min-width: 0;
-    transform: translateX(0);
-    z-index: 800;
-    display: none;
-}
 .g-main {
+    margin-top: 16px;
+    background-color: #fff;
     width: 1056px;
     margin-left: auto;
     margin-right: auto;
-    padding: 24px 16px 32px;
+    padding: 16px;
+}
+
+// 覆盖掉 Ant 样式
+.ant-menu-item {
+    top: 1;
+    margin-top: 0;
+    border: 0;
+    
+    &:hover {
+        border-bottom: 0;
+        bottom: 0;
+    }
+}
+.ant-menu-horizontal {
+    line-height: 60px;
+    border-bottom: 0;
+}
+.ant-menu-item-active {
+    border-bottom: 0;
+}
+.anticon-logout {
+    margin-right: 5px;
 }

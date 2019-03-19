@@ -10,7 +10,7 @@ class FrontendController extends Controller {
     async index() {
         const ctx = this.ctx;
         const pageIndex = _.toInteger(ctx.query.pageIndex) || 1;
-        const pageSize = _.toInteger(ctx.app.siteConfig.pageSize) || 10;
+        const pageSize = _.toInteger(ctx.app.Settings.pageSize) || 10;
         const result = await ctx.app.model.Post.findAndCountAllForFront(pageIndex, pageSize);
 
         const pagination = {

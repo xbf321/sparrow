@@ -81,13 +81,13 @@ export default class Home extends React.Component {
     async fetchData(params = {}) {
         this.loading = true;
         Object.assign(this.queryParam, params);
-        this.list = (await axios.get('/api/posts', {
+        this.list = (await axios.get('/posts', {
             params: this.queryParam
         }) || {});
         this.loading = false;
     }
     async handleDeletePost(item) {
-        const result = await axios.delete(`/api/posts/${item.uuid}`);
+        const result = await axios.delete(`/posts/${item.uuid}`);
         if (!result) {
             message.error('删除失败。');
             return;
@@ -95,7 +95,7 @@ export default class Home extends React.Component {
         this.fetchData();
     }
     async handleNewPost() {
-        const result = await axios.post('/api/posts');
+        const result = await axios.post('/posts');
         this.props.history.push({
             pathname: `/pagesadmin/posts/${result.uuid}`
         });

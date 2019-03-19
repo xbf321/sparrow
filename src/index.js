@@ -6,6 +6,7 @@ import AppRouter from "./app";
 import "codemirror/lib/codemirror.css";
 import "./styles/global.scss";
 
+
 /* eslint-disable */
 ReactDOM.render(<AppRouter />, document.getElementById("app"));
 

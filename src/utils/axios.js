@@ -1,15 +1,7 @@
 import axios from 'axios';
+import { message } from 'antd';
 
-// axios.interceptors.request.use(function (config) {
-//     if (!isEnvNode && config.needLoading) {
-//         loading.show();
-//     }
-//     config.startTime = (new Date()).getTime();
-//     return config;
-// }, function (error) {
-//     return Promise.reject(error);
-// });
-
+axios.defaults.baseURL = '/api';
 const checkDeleteMethod = (response) => {
     const { status } = response;
     if (status === 404) {
@@ -17,6 +9,14 @@ const checkDeleteMethod = (response) => {
     }
     return true;
 };
+
+const checkPutMethod = (response) => {
+    const { status: httpStatus, data: { message: dataMessage, status: dataStatus = -1 } } = response;
+    if (dataStatus !== 0 && dataMessage) {
+        message.error(dataMessage);
+    }
+    return false;
+}
 
 axios.interceptors.response.use(response => {
     const { config: { method }, data: {
@@ -30,10 +30,7 @@ axios.interceptors.response.use(response => {
     if (status === 0) {
         return data;
     }
-    console.error({
-        status,
-        message
-    });
+    message.error(message);
     return undefined;
     
 }, error => {
@@ -42,6 +39,13 @@ axios.interceptors.response.use(response => {
     if (method.toUpperCase() === 'DELETE') {
         const result = checkDeleteMethod(response);
         return result;
+    }
+    if (method.toUpperCase() === 'PUT') {
+        const result = checkPutMethod(response);
+        return result;
+    }
+    if (method.toUpperCase() === 'GET') {
+        return false;
     }
     return Promise.reject(error);
 });

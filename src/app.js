@@ -1,50 +1,69 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Provider } from "mobx-react";
+import { Layout } from 'antd';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Header from './components/Header';
 import HomePage from './pages/home/';
 import EditPage from './pages/edit/';
-// const menus = [];
+import SettingsPage from './pages/settings';
+import NotFoundPage from './pages/notFound';
+
+const rootStore = window.g_config || {};
+const url_prefix = `${rootStore.settings.site_url || ''}/pagesadmin`;
+const menus = [{
+    label: '工作台',
+    to: url_prefix
+},{
+    label: '设置',
+    to: `${url_prefix}/settings`
+}];
 const routes = [{
-    path: '/pagesadmin',
+    path: `${url_prefix}`,
     component: HomePage,
 }, {
-    path: '/pagesadmin/posts/:uuid',
+    path: `${url_prefix}/posts/:uuid`,
     component: EditPage
+}, {
+    path: `${url_prefix}/settings`,
+    component: SettingsPage
 }];
-
-
+const headerProps = {
+    ...rootStore,
+    menus,
+    onLogout: () => {
+        window.location.href = `${url_prefix}/logout`;
+    }
+};
 function AppRouter() {
     return (
-        <Router>
-            <div className="g-viewport">
-                <nav className="g-sidebar">
-                    <ul>
-                        <li>
-                            <Link to="/pagesadmin">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/pagesadmin/create/">create</Link>
-                        </li>
-                        <li>
-                            <Link to="/pagesadmin/users/">Users</Link>
-                        </li>
-                    </ul>
-                </nav>
-                <main className="g-main">
-                    {
-                        routes.map(item => {
-                            return (
-                                <Route
-                                    key={item.path}
-                                    path={item.path}
-                                    exact
-                                    component={item.component}
-                                />
-                            );
-                        })
-                    }
-                </main>
-            </div>
-        </Router>
+        <Provider rootStore={rootStore}>
+            <Router>
+                <Layout className="g-viewport">
+                    <Header {...headerProps} />
+                    <Layout.Content className="g-main">
+                        <Switch>
+                            {
+                                routes.map(item => {
+                                    return (
+                                        <Route
+                                            key={item.path}
+                                            path={item.path}
+                                            exact
+                                            component={item.component}
+                                        />
+                                    );
+                                })
+                            }
+                            <Route component={NotFoundPage} />
+                        </Switch>
+                    </Layout.Content>
+                    <Layout.Footer style={{ textAlign: 'center' }}>
+                        Use Ant Design ©2019
+                    </Layout.Footer>
+                </Layout>
+            </Router>
+        </Provider>
     );
 }
 

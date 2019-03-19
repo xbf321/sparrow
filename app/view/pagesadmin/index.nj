@@ -1,4 +1,12 @@
 {% extends "./_layout.nj" %}
+{% block header %}
+    <script>
+        window.g_config = {
+            settings: {{ settings | safe }},
+            user: {{ userInfo | safe }}
+        };
+    </script>
+{% endblock %}
 {% block footer %}
     <script src="{{ ctx.loadManifest('admin.js') }}"></script>
 {% endblock %}

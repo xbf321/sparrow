@@ -3,6 +3,12 @@
 module.exports = () => {
     const config = exports = {};
 
+    config.security = {
+        csrf: {
+            enable: false,
+        }
+    };
+    
     config.sequelize = {
         dialect: 'mysql',
         database: 'sparrow',

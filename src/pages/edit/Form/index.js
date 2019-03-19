@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Input } from 'antd';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import { observer } from 'mobx-react';
 require('codemirror/mode/markdown/markdown');
 import './style.scss';
@@ -30,7 +30,7 @@ class Form extends React.Component {
                         mode: 'markdown',
                     }}
                     value={markdown_content}
-                    onChange={(editor, data, value) => {
+                    onBeforeChange={(editor, data, value) => {
                         onChange({
                             markdown_content: value,
                         });

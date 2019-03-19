@@ -2,11 +2,11 @@
 module.exports = {
     async renderBlogView(filename, data = {}) {
         const { app, ctx } = this;
-        const { config: { themePath }, siteConfig } = app;
+        const { config: { themePath }, settings } = app;
 
-        const tplName = `${themePath}${siteConfig.theme}/${filename}.nj`;
+        const tplName = `${themePath}${settings.theme}/${filename}.nj`;
         await ctx.render(tplName, {
-            siteConfig,
+            settings,
             ...data,
         });
     },
@@ -16,4 +16,10 @@ module.exports = {
             data,
         };
     },
+    fail(message = '') {
+        return {
+            status: -1,
+            message,
+        };
+    }
 };
