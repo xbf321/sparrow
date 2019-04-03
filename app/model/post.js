@@ -21,7 +21,7 @@ module.exports = app => {
                 return this.setDataValue('title', value);
             }
         },
-        pathname: STRING,
+        slug: STRING,
         markdown_content: {
             type: TEXT,
             set(val) {
@@ -62,9 +62,9 @@ module.exports = app => {
         getterMethods: {
             url() {
                 // if (this.type === 0) {
-                return `/${this.created_year}/${this.created_month}/${this.pathname}.html`;
+                return `/${this.created_year}/${this.created_month}/${this.slug}.html`;
                 // }
-                // return this.pathname;
+                // return this.slug;
             },
             created_at_short() {
                 return moment(this.created_at).format('YYYY-MM-DD');
@@ -121,17 +121,17 @@ module.exports = app => {
             title: '无标题',
             created_year: now.getFullYear(),
             created_month: now.getMonth() + 1,
-            pathname: uuid,
+            slug: uuid,
             summary: '',
             markdown_content: '',
             content: '',
         });
     }
 
-    Post.findByPathname = async function(year, month, pathname) {
+    Post.findBySlug = async function(year, month, slug) {
         return await this.findOne({
             where: {
-                pathname,
+                slug,
                 created_year: year,
                 created_month: month,
             },

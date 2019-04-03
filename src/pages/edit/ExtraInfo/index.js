@@ -19,7 +19,7 @@ class ExtraInfo extends React.Component {
         const { getFieldDecorator } = this.props.form;
         const {
             type,
-            pathname,
+            slug,
             summary,
         } = this.props;
         return (
@@ -39,8 +39,8 @@ class ExtraInfo extends React.Component {
                 <Row gutter={16}>
                     <Col span={24}>
                         <Form.Item label="路径">
-                        {getFieldDecorator('pathname', {
-                            initialValue: pathname,
+                        {getFieldDecorator('slug', {
+                            initialValue: slug,
                             rules: [{ required: true, message: '访问路径不能为空' }],
                         })(<Input />)}
                         </Form.Item>

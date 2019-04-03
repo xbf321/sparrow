@@ -71,24 +71,24 @@ class PostsController extends Controller {
         }
         const {
             type = 0,
-            pathname = uuid,
+            slug = uuid,
             summary = '',
         } = this.ctx.request.body;
 
         // TODO
-        // 校验pathname 是否合法
+        // 校验pslug 是否合法
         // 只允许数字字母中行线或下划线
 
 
         // 检查路径是否重复
-        const isExits = await Post.findByPathname(postInfo.created_year, postInfo.created_month, pathname);
+        const isExits = await Post.findBySlug(postInfo.created_year, postInfo.created_month, slug);
         if (!!isExits && isExits.uuid != uuid) {
             this.ctx.status = 400;
             this.ctx.body = this.ctx.helper.fail('验证失败，路径名冲突，有重复');
             return;
         }
         postInfo.type = parseInt(type, 10) === 0 ? 0 : 1;
-        postInfo.pathname = pathname;
+        postInfo.slug = slug;
         postInfo.summary = summary;
         postInfo.save();
 

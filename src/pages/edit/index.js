@@ -59,12 +59,12 @@ class Create extends React.Component {
                 title = '',
                 markdown_content = '',
                 type,
-                pathname,
+                slug,
                 summary,
         } = this.postInfo;
         const extraInfoProps = {
             type,
-            pathname,
+            slug,
             summary,
             onSubmit: this.handleSaveMetaInfo.bind(this),
         };

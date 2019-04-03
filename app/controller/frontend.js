@@ -31,9 +31,9 @@ class FrontendController extends Controller {
         const ctx = this.ctx;
         const year = ctx.params[0];
         const month = ctx.params[1];
-        const pathname = ctx.params[2];
+        const slug = ctx.params[2];
 
-        const result = await ctx.app.model.Post.findByPathname(year, month, pathname);
+        const result = await ctx.app.model.Post.findBySlug(year, month, slug);
         if (result === null) {
             ctx.status = 404;
             return;

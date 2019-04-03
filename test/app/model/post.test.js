@@ -15,8 +15,8 @@ describe('test/app/model/post.test.js', () => {
     //     assert(result);
     // });
 
-    // it('findByPathName', async () => {
-    //     const result = await app.model.Post.findByPathname(2019, 3, 'life-of-a-message');
+    // it('findBySlug', async () => {
+    //     const result = await app.model.Post.findBySlug(2019, 3, 'life-of-a-message');
     //     assert(result !== null);
     // });
 
