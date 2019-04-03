@@ -1,7 +1,10 @@
 const moment = require('moment');
 const uuidv1 = require('uuid/v1');
+const marked = require('marked');
+const utils = require('utility');
+
 module.exports = app => {
-    const { STRING, INTEGER, DATE, TEXT, BOOLEAN, Op  } = app.Sequelize;
+    const { STRING, INTEGER, DATE, TEXT, Op  } = app.Sequelize;
     const Post = app.model.define('post', {
         id: {
             type: INTEGER,
@@ -21,6 +24,22 @@ module.exports = app => {
         pathname: STRING,
         markdown_content: {
             type: TEXT,
+            set(val) {
+                const renderer = new marked.Renderer();
+                renderer.heading = function (text, level) {
+                    const anchor = utils.md5(level + '').slice(0, 8);
+                    return `
+                            <h${level} id="${anchor}">
+                              <a class="anchor" href="#${anchor}"></a>
+                              ${text}
+                            </h${level}>`;
+                };
+                const result = marked(val, {
+                    renderer,
+                });
+                this.setDataValue('content', result);
+                this.setDataValue('markdown_content', val);
+            },
         },
         summary: TEXT,
         content: TEXT,
@@ -57,6 +76,42 @@ module.exports = app => {
         freezeTableName: true,
     });
 
+    Post.findPrevAndNext = async function(id, date) {
+        const whereCondition = {
+            id: {
+                [Op.ne]: id,
+            },
+            // 0 -> 文章、1 -> 页面
+            type: 0,
+            // 0 为草稿，1 为已经发布
+            status: 1,
+        };
+        const order = [
+            [ 'created_at', 'DESC' ],
+        ];
+        const prev = await this.findOne({
+            where: Object.assign({}, whereCondition, {
+                created_at: {
+                    [Op.lt]: date, 
+                },
+            }),
+            order,
+        });
+        const next = await this.findOne({
+            where: Object.assign({}, whereCondition, {
+                created_at: {
+                    [Op.gt]: date, 
+                },
+            }),
+            order,
+        });
+        return {
+            prev,
+            next,
+        };
+    }
+
+    // 创建一个空的
     Post.createEmpty = async function(userId) {
         const uuid = uuidv1().replace(/[-]/g, '');
         const now = (new Date());
@@ -127,6 +182,21 @@ module.exports = app => {
             ],
             limit: pageSize,
             offset,
+        });
+    };
+
+    Post.findHotList = async function(number = 5) {
+        return await this.findAll({
+            where: {
+                // 0 -> 文章、1 -> 页面
+                type: 0,
+                // 0 为草稿，1 为已经发布
+                status: 1,
+            },
+            order: [
+                [ 'view_num', 'DESC' ],
+            ],
+            limit: number,
         });
     };
 

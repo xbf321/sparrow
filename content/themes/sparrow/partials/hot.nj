@@ -1,0 +1,10 @@
+<aside class="widget widget--hot">
+    <h2 class="widget__title">受欢迎文章</h2>
+    <div class="widget__content">
+        <ul class="widget__list">
+            {% for post in hotPosts %}
+                <li class="widget__list-item"><a href="{{ post.url}}" class="link" title="{{ post.title}}">{{ post.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</aside>

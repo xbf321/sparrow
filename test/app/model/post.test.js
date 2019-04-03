@@ -32,12 +32,12 @@ describe('test/app/model/post.test.js', () => {
 
     it('PUT-UPDATE', async () => {
         const loginUserId = 0;
-        const uuid = 'fb4c363047fb11e9b98aabbd772f5990';
+        const uuid = '55702f304a2d11e9aee463b728329d22';
         const postInfo = await app.model.Post.findByUserIdAndUUID(loginUserId, uuid);
         assert(postInfo);
-        postInfo.title = '标题';
+        postInfo.title = `title-${Date.now()}`;
         postInfo.summary = 'summary';
-        postInfo.markdown_content = 'markdown_content';
+        postInfo.markdown_content = `# i am h1 \n ssss \n # i am h1 too. \n ## i am h2-${Date.now()}\n hear is body. \n ### i am a h3\n ### i am h4 \n #### i am h5`;
         const result = await postInfo.save();
         assert(result);
     })

@@ -2,10 +2,11 @@
 module.exports = {
     async renderBlogView(filename, data = {}) {
         const { app, ctx } = this;
-        const { config: { themePath }, settings } = app;
-
-        const tplName = `${themePath}${settings.theme}/${filename}.nj`;
+        const { settings } = app;
+        const hotPosts = await ctx.app.model.Post.findHotList();
+        const tplName = `${settings.theme}/${filename}.nj`;
         await ctx.render(tplName, {
+            hotPosts,
             settings,
             ...data,
         });

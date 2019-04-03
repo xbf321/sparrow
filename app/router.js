@@ -2,8 +2,7 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-    const { router, controller, middlewares } = app;
-    const settingsHandler = middlewares.settingsHandler();
+    const { router, controller } = app;
 
     // API
     router.put('/api/settings', controller.api.settings.update);
@@ -11,22 +10,22 @@ module.exports = app => {
     router.resources('posts', '/api/posts', controller.api.posts);
     
     // 后台
-    router.get('/pagesadmin/login', settingsHandler, controller.pagesadmin.login);
-    router.get('/pagesadmin/logout', settingsHandler, controller.pagesadmin.logout);
-    router.get('/pagesadmin', settingsHandler, controller.pagesadmin.index);
-    router.get('/pagesadmin/*', settingsHandler, controller.pagesadmin.index);
+    router.get('/pagesadmin/login', controller.pagesadmin.login);
+    router.get('/pagesadmin/logout', controller.pagesadmin.logout);
+    router.get('/pagesadmin', controller.pagesadmin.index);
+    router.get('/pagesadmin/*', controller.pagesadmin.index);
 
     // 前台
     // 归档
-    router.get(/^\/([1-2][0-9][0-9][0-9])\/?$/, settingsHandler, controller.frontend.archive);
-    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/?$/, settingsHandler, controller.frontend.archive);
+    router.get(/^\/([1-2][0-9][0-9][0-9])\/?$/, controller.frontend.archive);
+    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/?$/, controller.frontend.archive);
     // 详情页
-    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/([\w_-]+)\.html$/, settingsHandler, controller.frontend.post);
+    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/([\w_-]+)\.html$/, controller.frontend.post);
     // Tag
-    router.get('/tag/:tagname', settingsHandler, controller.frontend.tag);
+    router.get('/tag/:tagname', controller.frontend.tag);
     // 首页
-    router.get('/', settingsHandler, controller.frontend.index);
+    router.get('/', controller.frontend.index);
 
     // 测试
-    router.get('/test', settingsHandler, controller.frontend.test);
+    router.get('/test', controller.frontend.test);
 };

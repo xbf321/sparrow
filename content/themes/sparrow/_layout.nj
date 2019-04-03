@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{{ settings.title }}{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href='/asset/css/style.css' type='text/css' media='all'/>
+    {% block header %}{% endblock %}
+  </head>
+  <body>
+        <header class="header">
+            <div class="header__content">
+                <a href="/" class="header__title" title="{{ settings.title }}">{{ settings.title }}</a>
+                <ul class="nav-box">
+                    <li class="nav-box__item"><a href="https://github.com/xbf321">GITHUB</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="content">
+            <div class="main">
+                {% block body %}{% endblock %}
+            </div>
+            <div class="sidebar">
+                {% block sidebar %}
+                    {% include "./partials/about.nj" %}
+                    {% include "./partials/hot.nj" %}
+                {% endblock %}
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer__content">
+                基于 <a target="_blank" href="https://eggjs.org" class="link">Egg.js</a> & <a href="https://ant.design" class="link">AntD</a>
+            </div>
+        </footer>
+        {% block footer %}{% endblock %}
+  </body>
+</html>

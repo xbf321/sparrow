@@ -18,5 +18,9 @@ module.exports = () => {
         password: 'sparrow',
     };
 
+    config.development = {
+        // watchDirs: [ 'node_modules/koa-static-cache',],
+    };
+
     return config;
 };

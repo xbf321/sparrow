@@ -1,8 +1,22 @@
 # sparrow
 
+## 开发环境运行
+
+```bash
+npm install
+npm run dev
+# js 打包主要后台使用
+npm run dev-js
+```
+
+## 访问
+
+[http://127.0.0.1:7001](http://127.0.0.1:7001)
+
 ## URL
 
 ### 前台
+
 ```bash
 单条博文 -> /2019/02/xx.html
 归档 -> /2019/02

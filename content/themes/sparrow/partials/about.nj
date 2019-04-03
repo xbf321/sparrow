@@ -1,0 +1,4 @@
+<aside class="widget widget--about">
+    <h2 class="widget__title">关于</h2>
+    <div class="widget__content">{{settings.about}}</div>
+</aside>

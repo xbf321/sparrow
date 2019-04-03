@@ -9,8 +9,8 @@ class FrontendController extends Controller {
      */
     async index() {
         const ctx = this.ctx;
-        const pageIndex = _.toInteger(ctx.query.pageIndex) || 1;
-        const pageSize = _.toInteger(ctx.app.Settings.pageSize) || 10;
+        const pageIndex = _.toInteger(ctx.query.pageIndex || 1);
+        const pageSize = _.toInteger(ctx.app.settings.pageSize || 10);
         const result = await ctx.app.model.Post.findAndCountAllForFront(pageIndex, pageSize);
 
         const pagination = {
@@ -38,6 +38,9 @@ class FrontendController extends Controller {
             ctx.status = 404;
             return;
         }
+        const prevAndNext = await ctx.app.model.Post.findPrevAndNext(result.id, result.created_at);
+        result.prev = prevAndNext.prev;
+        result.next = prevAndNext.next;
         const toc = TocBuilder(result.markdown_content).content;
         // view_num 加1
         await result.increment('view_num');
