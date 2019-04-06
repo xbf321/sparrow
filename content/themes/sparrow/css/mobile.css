@@ -1,0 +1,39 @@
+@media (max-width:900px) {
+    .header {
+        min-width: auto;
+    }
+    .content {
+        width: 100%;
+        padding: 0;
+    }
+    .main {
+        padding: 16px;
+    }
+    .sidebar {
+        display: none;
+    }
+    .post-card__extra {
+        font-size: 14px;
+    }
+    .post__content {
+        width: 100%;
+    }
+    .post-nav {
+        display: block;
+    }
+    .post-nav__label--end {
+        justify-content: flex-start;
+    }
+    .footer {
+        width: 100%;
+        min-width: auto;
+    }
+    pre {
+        word-break: break-all !important;
+        word-wrap: break-word !important;
+        white-space: pre-wrap !important;
+    }
+    pre > code {
+        white-space: pre-wrap !important;
+    }
+}

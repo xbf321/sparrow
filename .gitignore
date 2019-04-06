@@ -12,3 +12,4 @@ run/
 typings/
 .nyc_output/
 *.yml
+app/public/assets

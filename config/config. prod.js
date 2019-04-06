@@ -11,15 +11,11 @@ module.exports = () => {
     
     config.sequelize = {
         dialect: 'mysql',
-        database: 'sparrow_dev',
-        host: '47.104.77.73',
+        database: 'sparrow',
+        host: 'localhost',
         port: 3306,
-        username: 'sparrow_dev',
-        password: 'sparrow_dev',
-    };
-
-    config.development = {
-        // watchDirs: [ 'node_modules/koa-static-cache',],
+        username: 'web_sparrow',
+        password: 'aBOQYAo7w',
     };
 
     return config;

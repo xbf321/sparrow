@@ -1,13 +1,12 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseConfig = require('./webpack.default.js');
 
 baseConfig.output.publicPath = 'http://localhost:7013/app/public/assets/';
-baseConfig.output.filename = '[name]@dev.js';
+baseConfig.output.filename = '[name].js';
 baseConfig.plugins = baseConfig.plugins.concat([
-    new ExtractTextPlugin({
-        allChunks: false,
-        filename: '[name]@dev.css',
+    new MiniCssExtractPlugin({
+        filename: '[name].css',
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),

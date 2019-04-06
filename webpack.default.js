@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const rootPath = path.resolve(__dirname, 'app/public/assets');
 
 module.exports = {
@@ -16,27 +16,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: 'css-loader',
-                }),
-            },
-            {
-                test: /\.scss$/,
-                include: [
-                    path.resolve(__dirname, 'src'),
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                  MiniCssExtractPlugin.loader,
+                  'css-loader',
+                  'sass-loader',
                 ],
-                use: ExtractTextPlugin.extract({
-                    use: [{
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 2,
-                        },
-                    }, {
-                        loader: 'sass-loader',
-                    }],
-                }),
             },
             {
                 test: /\.js$/,

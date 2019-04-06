@@ -4,7 +4,7 @@
     {{ post.title }}
 {% endblock %}
 {% block header %}
-    <link rel="stylesheet" href='/asset/css/han.css' type='text/css' media='all'/>
+    <link rel="stylesheet" href='/asset/css/github-markdown.css' type='text/css' media='all'/>
 {% endblock %}
 
 {% block body %}
@@ -13,7 +13,7 @@
         <div class="post__meta">
             更新：<time class="post__date"><a href="{{ post.url}}" title="{{ post.title}}">{{ post.updated_at_short}}</a></time>发布：<time class="post__date"><a href="{{ post.url}}" title="{{ post.title}}">{{ post.created_at_short }}</a></time><span class="post__date post__date--no">{{ post.view_num}} 次围观</span>
         </div>
-        <div class="post__content markdown">
+        <div class="post__content markdown-body">
             {{ post.content | safe}}
             <br />
             -- EOF --
@@ -38,5 +38,6 @@
                 </div>
             {% endif %}
         </div>
+        <!-- {% include "./partials/comment.nj" %} -->
     </div>
 {% endblock %}

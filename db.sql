@@ -8,13 +8,13 @@ CREATE TABLE `settings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL DEFAULT '',
   `value` text,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
-INSERT INTO `options` (`key`, `value`)
+INSERT INTO `settings` (`key`, `value`)
 VALUES
   ('theme','sparrow'),
   ('keywords', '关键词'),

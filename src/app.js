@@ -58,9 +58,6 @@ function AppRouter() {
                             <Route component={NotFoundPage} />
                         </Switch>
                     </Layout.Content>
-                    <Layout.Footer style={{ textAlign: 'center' }}>
-                        Use Ant Design ©2019
-                    </Layout.Footer>
                 </Layout>
             </Router>
         </Provider>
