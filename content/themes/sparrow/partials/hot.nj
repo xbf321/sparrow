@@ -3,7 +3,7 @@
     <div class="widget__content">
         <ul class="widget__list">
             {% for post in hotPosts %}
-                <li class="widget__list-item"><a href="{{ post.url}}" class="link" title="{{ post.title}}">{{ post.title}}</a></li>
+                <li class="ellipsis widget__list-item"><a href="{{ post.url}}" class="link" title="{{ post.title}}">{{ post.title}}</a></li>
             {% endfor %}
         </ul>
     </div>

@@ -1,5 +1,6 @@
 {% extends "./_layout.nj" %}
 {% block header %}
+    <link rel="stylesheet" href="{{ ctx.loadManifest('admin.css') }}" type="text/css" media="all"/>
     <script>
         window.g_config = {
             settings: {{ settings | safe }},

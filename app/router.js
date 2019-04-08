@@ -3,17 +3,19 @@
  */
 module.exports = app => {
     const { router, controller } = app;
+    const authHandler = app.middlewares.authHandler();
 
     // API
-    router.put('/api/settings', controller.api.settings.update);
-    router.put('/api/posts/:uuid/meta', controller.api.posts.meta);
-    router.resources('posts', '/api/posts', controller.api.posts);
+    router.post('/api/login', controller.api.login.index);
+    router.put('/api/settings', authHandler, controller.api.settings.update);
+    router.put('/api/posts/:uuid/meta', authHandler, controller.api.posts.meta);
+    router.resources('posts', '/api/posts', authHandler, controller.api.posts);
     
     // 后台
     router.get('/pagesadmin/login', controller.pagesadmin.login);
     router.get('/pagesadmin/logout', controller.pagesadmin.logout);
-    router.get('/pagesadmin', controller.pagesadmin.index);
-    router.get('/pagesadmin/*', controller.pagesadmin.index);
+    router.get('/pagesadmin', authHandler, controller.pagesadmin.index);
+    router.get('/pagesadmin/*', authHandler, controller.pagesadmin.index);
 
     // 前台
     // 归档

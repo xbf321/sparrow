@@ -7,7 +7,12 @@ a {
     text-decoration: none;
 }
 .link:hover {
-    color: #0070c9;
+    color: #a62425;
+}
+.ellipsis {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .header {
     display: block;
@@ -112,6 +117,7 @@ a {
     color: #a62425;
 }
 .post__title {
+    margin: 0;
     font-size: 30px;
     line-height: 42px;
 }
@@ -135,10 +141,12 @@ a {
 .post-nav__prev,
 .post-nav__next {
     padding: 0 12px;
+    max-width: 50%;
 }
 .post-nav__pager {
     display: block;
-    padding: 15px 0;
+    padding-top: 10px;
+    padding-bottom: 0px;
 }
 .post-nav__label {
     display: flex;
@@ -156,6 +164,7 @@ a {
     font-weight: 500;
     color: #262626;
     transition: color .35s ease;
+    line-height: 24px;
 }
 /*
 * widget
@@ -178,7 +187,7 @@ a {
     padding: 0;
 }
 .widget__list-item {
-    line-height: 24px;
+    line-height: 26px;
 }
 
 /*

@@ -22,9 +22,13 @@ module.exports = appInfo => {
         prefix: '/public/',
         dir: path.join(appInfo.baseDir, 'app/public'),
     };
-
     config.manifest = {
         default: path.join(appInfo.baseDir, '/app/public/assets/manifest.json')
+    };
+    config.security = {
+        csrf: {
+            headerName: 'x-csrf-token',
+        },
     };
     return config;
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, message, Drawer } from 'antd';
+import { Button, notification, Drawer } from 'antd';
 import axios from 'utils/axios';
 import { observable, action } from "mobx";
 import { observer } from 'mobx-react';
@@ -41,13 +41,20 @@ class Create extends React.Component {
         this.isLoadingForBtn = true;
         const result = await axios.put(this.endpoint, this.postInfo);
         if (result) {
-            message.success('更新成功。');
+            notification.success({
+                message: '更新成功。',
+                description: `4秒跳转到「列表页」。`,
+                onClose: () => {
+                    this.props.history.push({
+                        pathname: '/pagesadmin/',
+                    });
+                },
+            });
         }
         this.isLoadingForBtn = false;
     }
     @action
     handleFormChange = (info = {}) => {
-        console.info(info);
         this.postInfo = Object.assign({}, this.postInfo, info);
     }
     @action

@@ -11,7 +11,12 @@ class PagesAdminController extends Controller {
     }
 
     async login() {
-        this.ctx.body = 'login';
+        const { method } = this.ctx.request;
+        if (method.toUpperCase() === 'POST') {
+            
+        }
+        console.info(method);
+        await this.ctx.render('pagesadmin/login.nj');
     }
 
     async logout() {

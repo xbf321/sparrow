@@ -28,6 +28,7 @@ class Form extends React.Component {
                     className="content-wrapper"
                     options={{
                         mode: 'markdown',
+                        lineWrapping: true,
                     }}
                     value={markdown_content}
                     onBeforeChange={(editor, data, value) => {

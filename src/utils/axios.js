@@ -1,7 +1,10 @@
 import axios from 'axios';
-import { message } from 'antd';
+import cookie from 'cookie';
+import { message as antdMessage } from 'antd';
 
 axios.defaults.baseURL = '/api';
+axios.defaults.headers.common['x-csrf-token'] = cookie.parse(document.cookie).csrfToken || '';
+
 const checkDeleteMethod = (response) => {
     const { status } = response;
     if (status === 404) {
@@ -13,7 +16,7 @@ const checkDeleteMethod = (response) => {
 const checkPutMethod = (response) => {
     const { status: httpStatus, data: { message: dataMessage, status: dataStatus = -1 } } = response;
     if (dataStatus !== 0 && dataMessage) {
-        message.error(dataMessage);
+        antdMessage.error(dataMessage || '');
     }
     return false;
 }
@@ -30,7 +33,7 @@ axios.interceptors.response.use(response => {
     if (status === 0) {
         return data;
     }
-    message.error(message);
+    antdMessage.error(message);
     return undefined;
     
 }, error => {

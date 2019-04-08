@@ -2,12 +2,6 @@
 
 module.exports = () => {
     const config = exports = {};
-
-    config.security = {
-        csrf: {
-            enable: false,
-        }
-    };
     
     config.sequelize = {
         dialect: 'mysql',
@@ -19,7 +13,7 @@ module.exports = () => {
     };
 
     config.development = {
-        // watchDirs: [ 'node_modules/koa-static-cache',],
+        watchDirs: [ 'app/public/asset' ],
     };
 
     return config;

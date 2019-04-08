@@ -1,10 +1,11 @@
 {% extends "./_layout.nj" %}
 
-{% block title %}
-    {{ post.title }}
-{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
+
 {% block header %}
     <link rel="stylesheet" href='/asset/css/github-markdown.css' type='text/css' media='all'/>
+    <meta content='{{post.title}}' property='og:title'/>
+    <meta content='{{post.summary}}' property='og:description'/>
 {% endblock %}
 
 {% block body %}
@@ -38,6 +39,6 @@
                 </div>
             {% endif %}
         </div>
-        <!-- {% include "./partials/comment.nj" %} -->
+        {% include "./partials/comment.nj" %}
     </div>
 {% endblock %}

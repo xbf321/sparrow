@@ -8,6 +8,7 @@ const rootPath = path.resolve(__dirname, 'app/public/assets');
 module.exports = {
     entry: {
         admin: './src/index.js',
+        login: './src/pages/login/index.js',
     },
     output: {
         // 必须是绝对路径

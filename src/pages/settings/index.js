@@ -3,7 +3,7 @@ import { observable } from "mobx";
 import { observer, inject } from 'mobx-react';
 
 import axios from 'utils/axios';
-import { Input, Form, Col, Row, Button } from 'antd';
+import { Input, Form, Col, Row, Button, message} from 'antd';
 
 @inject("rootStore")
 @observer
@@ -16,7 +16,8 @@ class Settings extends React.Component {
     }
     async handleUpdate(info = {}) {
         this.isSendRequest = true;
-        await axios.put('/settings', info);
+        const result = await axios.put('/settings', info);
+        message[result ? 'success' : 'error'](result ? '更新成功。' : '更新失败，请重试。');
         this.isSendRequest = false;
     }
     handleSubmit = (e) => {
@@ -33,6 +34,7 @@ class Settings extends React.Component {
             desc = '',
             about = '',
             title = '',
+            keywords = '',
         } = this.config;
         return (
             <Form>
@@ -41,6 +43,16 @@ class Settings extends React.Component {
                         <Form.Item label="网站标题">
                         {getFieldDecorator('title', {
                             initialValue: title,
+                            rules: [{ required: true, message: '不能为空' }],
+                        })(<Input />)}
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <Form.Item label="网站关键词">
+                        {getFieldDecorator('keywords', {
+                            initialValue: keywords,
                             rules: [{ required: true, message: '不能为空' }],
                         })(<Input />)}
                         </Form.Item>

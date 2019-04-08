@@ -27,7 +27,7 @@ export default class Home extends React.Component {
             if (type === 1) {
                 return <Tag>页面</Tag>
             }
-            return '';
+            return <Tag color="purple">文章</Tag>;
         }
     }, {
         title: '状态',
@@ -38,7 +38,7 @@ export default class Home extends React.Component {
             if (status === 0) {
                 return <Tag>未发布</Tag>
             }
-            return '';
+            return <Tag color="green">已发布</Tag>;
         },
     }, {
         title: '浏览数',
