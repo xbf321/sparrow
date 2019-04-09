@@ -9,6 +9,8 @@ class LoginController extends Controller {
         } = this.ctx.request.body;
         if (userName === 'xbf321' && password === 'x123123') {
             this.ctx.body = this.ctx.helper.success(true);
+            this.ctx.session.userName = 'xbf321';
+            this.ctx.session.userId = 1;
             return;
         }
         this.ctx.body = this.ctx.helper.fail('用户名或密码错误，请重试。');

@@ -2,25 +2,23 @@ const Controller = require('egg').Controller;
 
 class PagesAdminController extends Controller {
     async index() {
+        const { userId, userName } = this.ctx.session;
         await this.ctx.render('pagesadmin/index.nj', {
             settings: JSON.stringify(this.ctx.app.settings),
             userInfo: JSON.stringify({
-                userId: 0,
+                userId,
+                userName,
             })
         });
     }
 
     async login() {
-        const { method } = this.ctx.request;
-        if (method.toUpperCase() === 'POST') {
-            
-        }
-        console.info(method);
         await this.ctx.render('pagesadmin/login.nj');
     }
 
     async logout() {
-        this.ctx.body = 'logout';
+        this.ctx.session = null;
+        this.ctx.redirect('/pagesadmin/login');
     }
 }
 
