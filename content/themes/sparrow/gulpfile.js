@@ -23,5 +23,6 @@ function streamTask(cb) {
         .pipe(dest(targetDir));
     cb();
 }
+
 watch('css/*.scss', series(clearTargetDir, streamTask));
 exports.default = series(clearTargetDir, streamTask);
