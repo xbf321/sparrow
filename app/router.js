@@ -18,6 +18,8 @@ module.exports = app => {
     router.get('/pagesadmin/*', authHandler, controller.pagesadmin.index);
 
     // 前台
+    // page页
+    router.get(/^\/page\/([\w_-]+)\.html$/, controller.frontend.page);
     // 归档
     router.get(/^\/([1-2][0-9][0-9][0-9])\/?$/, controller.frontend.archive);
     router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/?$/, controller.frontend.archive);
@@ -25,6 +27,7 @@ module.exports = app => {
     router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/([\w_-]+)\.html$/, controller.frontend.post);
     // Tag
     router.get('/tag/:tagname', controller.frontend.tag);
+    
     // 首页
     router.get('/', controller.frontend.index);
 

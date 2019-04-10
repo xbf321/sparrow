@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseConfig = require('./webpack.default.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 baseConfig.output.publicPath = 'http://localhost:7013/app/public/assets/';
 baseConfig.output.filename = '[name].js';
 baseConfig.plugins = baseConfig.plugins.concat([
+    new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
         filename: '[name].css',
     }),

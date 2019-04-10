@@ -1,5 +1,5 @@
-import 'babel-polyfill';
-import "antd/dist/antd.css";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import * as React from 'react';
 import * as ReactDOM from "react-dom";
 import { observer } from 'mobx-react';

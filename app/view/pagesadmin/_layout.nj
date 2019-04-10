@@ -5,6 +5,9 @@
     </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script crossorigin src="https://gw.alipayobjects.com/a/g/component/react/16.4.0/??react.production.min.js,react-dom.production.min.js,react-dom-server.browser.production.min.js"></script>
+    <script crossorigin src="https://gw.alipayobjects.com/a/g/component/moment/2.14.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.16.1/antd.min.css" />
     {% block header %}{% endblock %}
   </head>
   <body>

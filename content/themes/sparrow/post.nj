@@ -3,7 +3,6 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block header %}
-    <link rel="stylesheet" href='/asset/css/github-markdown.css' type='text/css' media='all'/>
     <meta content='{{post.title}}' property='og:title'/>
     <meta content='{{post.summary}}' property='og:description'/>
 {% endblock %}

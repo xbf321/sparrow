@@ -1,5 +1,6 @@
 {
     "plugins": [
+        ["import", { "libraryName": "antd", "libraryDirectory": "lib"}, "ant"],
         [ "@babel/plugin-proposal-decorators", { "legacy": true }],
         [ "@babel/plugin-proposal-class-properties", { "loose": true }],
         [ "transform-react-jsx" ],

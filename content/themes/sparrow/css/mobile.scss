@@ -12,17 +12,22 @@
     .sidebar {
         display: none;
     }
-    .post-card__extra {
-        font-size: 14px;
+    .post-card {
+        &__extra {
+            font-size: 14px;
+        }
     }
-    .post__content {
-        width: 100%;
+    .post {
+        &__content {
+            width: 100%;
+        }
     }
     .post-nav {
         display: block;
-    }
-    .post-nav__label--end {
-        justify-content: flex-start;
+
+        &__label--end {
+            justify-content: flex-start;
+        }
     }
     .footer {
         width: 100%;

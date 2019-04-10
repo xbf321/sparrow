@@ -14,6 +14,11 @@ module.exports = {
         // 必须是绝对路径
         path: path.resolve(rootPath),
     },
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM",
+        "moment": "moment",
+    },
     module: {
         rules: [
             {

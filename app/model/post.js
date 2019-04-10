@@ -61,10 +61,10 @@ module.exports = app => {
     }, {
         getterMethods: {
             url() {
-                // if (this.type === 0) {
+                if (this.type === 1) {
+                    return `/page/${this.slug}.html`;
+                }
                 return `/${this.created_year}/${this.created_month}/${this.slug}.html`;
-                // }
-                // return this.slug;
             },
             created_at_short() {
                 return moment(this.created_at).format('YYYY-MM-DD');
@@ -81,8 +81,6 @@ module.exports = app => {
             id: {
                 [Op.ne]: id,
             },
-            // 0 -> 文章、1 -> 页面
-            type: 0,
             // 0 为草稿，1 为已经发布
             status: 1,
         };
@@ -128,12 +126,20 @@ module.exports = app => {
         });
     }
 
-    Post.findBySlug = async function(year, month, slug) {
+    Post.findByYearMonthAndSlug = async function(year, month, slug) {
         return await this.findOne({
             where: {
                 slug,
                 created_year: year,
                 created_month: month,
+            },
+        });
+    };
+
+    Post.findBySlug = async function(slug) {
+        return await this.findOne({
+            where: {
+                slug,
             },
         });
     };
@@ -154,8 +160,6 @@ module.exports = app => {
         const offset = (pageIndex - 1) >= 0 ? (pageIndex - 1) * pageSize : 0;
         return await this.findAndCountAll({
             where: {
-                // 0 -> 文章、1 -> 页面
-                type: 0,
                 // 0 为草稿，1 为已经发布
                 status: 1,
             },
@@ -188,8 +192,6 @@ module.exports = app => {
     Post.findHotList = async function(number = 5) {
         return await this.findAll({
             where: {
-                // 0 -> 文章、1 -> 页面
-                type: 0,
                 // 0 为草稿，1 为已经发布
                 status: 1,
             },

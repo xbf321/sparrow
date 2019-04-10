@@ -1,0 +1,10 @@
+{% extends "./_layout.nj" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <div class="page">
+        pagecontent
+        {% include "./partials/comment.nj" %}
+    </div>
+{% endblock %}

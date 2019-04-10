@@ -33,7 +33,7 @@ class FrontendController extends Controller {
         const month = ctx.params[1];
         const slug = ctx.params[2];
 
-        const result = await ctx.app.model.Post.findBySlug(year, month, slug);
+        const result = await ctx.app.model.Post.findByYearMonthAndSlug(year, month, slug);
         if (result === null) {
             ctx.status = 404;
             return;
@@ -58,6 +58,12 @@ class FrontendController extends Controller {
 
         // ctx.body = 'archive';
         ctx.body = `archive:${ctx.params[0]}-${ctx.params[1]}-${ctx.params[2]}-${ctx.params[3]}`;
+    }
+
+    async page() {
+        const ctx = this.ctx;
+        await ctx.helper.renderBlogView('page', {
+        });
     }
 
     /**
