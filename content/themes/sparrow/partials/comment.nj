@@ -6,7 +6,7 @@
 </div>
 <script>
     var disqus_config = function () {
-        this.page.url = '{{ post.url}}';
+        this.page.url = 'https://xingbaifang.com{{ post.url}}';
         this.page.identifier = '{{ post.uuid }}';
     };
     (function() {
