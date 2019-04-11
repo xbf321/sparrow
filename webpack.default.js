@@ -45,11 +45,6 @@ module.exports = {
         new ManifestPlugin({
             writeToFileEmit: true,
         }),
-        new webpack.DefinePlugin({
-            'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) },
-            __CLIENT__: JSON.stringify(true),
-            __SERVER__: JSON.stringify(false),
-        }),
     ],
     resolve: {
         alias: {

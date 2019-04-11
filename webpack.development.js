@@ -3,10 +3,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseConfig = require('./webpack.default.js');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-baseConfig.output.publicPath = 'http://localhost:7013/app/public/assets/';
+const port = process.env.FEPORT;
+baseConfig.mode = 'development';
+baseConfig.output.publicPath = `http://localhost:${port}/app/public/assets/`;
 baseConfig.output.filename = '[name].js';
 baseConfig.plugins = baseConfig.plugins.concat([
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
         filename: '[name].css',
     }),
@@ -14,10 +16,10 @@ baseConfig.plugins = baseConfig.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
 ]);
 baseConfig.devServer = {
-    host: '0.0.0.0',
     headers: { 'Access-Control-Allow-Origin': '*' },
     contentBase: false,
     disableHostCheck: true,
     hot: true,
+    port,
 };
 module.exports = baseConfig;

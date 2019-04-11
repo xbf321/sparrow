@@ -32,6 +32,7 @@ const headerProps = {
     ...rootStore,
     menus,
     onLogout: () => {
+        // 退出
         window.location.href = `${url_prefix}/logout`;
     }
 };

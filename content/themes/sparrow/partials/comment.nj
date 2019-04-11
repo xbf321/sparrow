@@ -1,15 +1,19 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<div id="gitalk-container"></div>
+<div id="disqus_thread">
+    评论加载中...
+    <br>
+    <br>
+    注：如果长时间无法加载，请针对 disq.us | disquscdn.com | disqus.com 启用代理。
+</div>
 <script>
-    var gitalk = new Gitalk({
-        clientID: 'd4ba36a997fb91e12365',
-        clientSecret: '337992c9fc5a2909755bb360afbc909bd79697da',
-        repo: 'blog-comment',
-        owner: 'xbf321',
-        admin: ['xbf321'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-    gitalk.render('gitalk-container');
+    var disqus_config = function () {
+        this.page.url = '{{ post.url}}';
+        this.page.identifier = '{{ post.uuid }}';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://xingbaifang-com.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
+                            

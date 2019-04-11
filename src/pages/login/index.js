@@ -1,11 +1,11 @@
-import "core-js/stable";
+// import "core-js/stable";
 import "regenerator-runtime/runtime";
 import * as React from 'react';
 import * as ReactDOM from "react-dom";
 import { observer } from 'mobx-react';
 
 import axios from 'utils/axios';
-import { Input, Form, Col, Row, Button, message, Icon} from 'antd';
+import { Input, Form, Button, Icon} from 'antd';
 
 import './style.scss';
 
