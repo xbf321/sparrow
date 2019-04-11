@@ -3,8 +3,8 @@
         <a href="{{ post.url}}" class="link" title="{{ post.title}}">{{ post.title}}</a>
     </header>
     <div class="post-card__extra">
-        更新：<time class="post-card__date"><a href="{{ post.url}}" title="{{ post.title}}">{{ post.updated_at_short}}</a></time>
-        发布：<time class="post-card__date"><a href="{{ post.url}}" title="{{ post.title}}">{{ post.created_at_short }}</a></time>
+        更新：<time class="post-card__date">{{ post.updated_at_short}}</time>
+        发布：<time class="post-card__date">{{ post.created_at_short }}</time>
         <span class="post-card__date post-card__date--no">{{ post.view_num}} 次围观</span>
     </div>
     <div class="post-card__summary">

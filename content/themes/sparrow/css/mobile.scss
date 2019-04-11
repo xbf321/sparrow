@@ -4,6 +4,7 @@
     }
     .content {
         width: 100%;
+        display: block;
         padding: 0;
     }
     .main {
@@ -32,13 +33,5 @@
     .footer {
         width: 100%;
         min-width: auto;
-    }
-    pre {
-        word-break: break-all !important;
-        word-wrap: break-word !important;
-        white-space: pre-wrap !important;
-    }
-    pre > code {
-        white-space: pre-wrap !important;
     }
 }

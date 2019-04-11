@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="page">
-        pagecontent
+        <pagecontent>
         {% include "./partials/comment.nj" %}
     </div>
 {% endblock %}

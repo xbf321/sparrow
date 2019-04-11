@@ -18,7 +18,7 @@ function streamTask(cb) {
     src('css/style.scss')
         .pipe(sass())
         .pipe(miniCSS())
-        .pipe(hash())
+        // .pipe(hash())
         .pipe(rename({ extname: '.min.css'}))
         .pipe(dest(targetDir));
     cb();
