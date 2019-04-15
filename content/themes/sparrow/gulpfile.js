@@ -6,7 +6,7 @@ const rename = require('gulp-rename');
 const hash = require('gulp-hash');
 const clean = require('gulp-clean');
 
-const targetDir = 'build/';
+const targetDir = 'assets/build/';
 
 function clearTargetDir(cb) {
     src(targetDir, { allowEmpty: true })
@@ -15,7 +15,7 @@ function clearTargetDir(cb) {
 }
 
 function streamTask(cb) {
-    src('css/style.scss')
+    src('assets/scss/style.scss')
         .pipe(sass())
         .pipe(miniCSS())
         // .pipe(hash())
@@ -24,5 +24,5 @@ function streamTask(cb) {
     cb();
 }
 
-watch('css/*.scss', series(clearTargetDir, streamTask));
+watch('assets/scss/*.scss', series(clearTargetDir, streamTask));
 exports.default = series(clearTargetDir, streamTask);
