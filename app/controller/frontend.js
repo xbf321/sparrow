@@ -33,19 +33,19 @@ class FrontendController extends Controller {
         const month = ctx.params[1];
         const slug = ctx.params[2];
 
-        const result = await ctx.app.model.Post.findByYearMonthAndSlug(year, month, slug);
-        if (result === null) {
+        const post = await ctx.app.model.Post.findByYearMonthAndSlug(year, month, slug);
+        if (post === null) {
             ctx.status = 404;
             return;
         }
-        const prevAndNext = await ctx.app.model.Post.findPrevAndNext(result.id, result.created_at);
-        result.prev = prevAndNext.prev;
-        result.next = prevAndNext.next;
-        const toc = TocBuilder(result.markdown_content).content;
+        const prevAndNext = await ctx.app.model.Post.findPrevAndNext(post.id, post.created_at);
+        post.prev = prevAndNext.prev;
+        post.next = prevAndNext.next;
+        const toc = TocBuilder(post.markdown_content).content;
         // view_num 加1
-        await result.increment('view_num');
+        await post.increment('view_num');
         await ctx.helper.renderBlogView('post', {
-            post: result,
+            post,
             toc,
         });
     }
@@ -55,14 +55,26 @@ class FrontendController extends Controller {
      */
     async archive() {
         const ctx = this.ctx;
-
+        
         // ctx.body = 'archive';
         ctx.body = `archive:${ctx.params[0]}-${ctx.params[1]}-${ctx.params[2]}-${ctx.params[3]}`;
     }
 
+    /**
+     * 「页面」类型页面
+     */
     async page() {
         const ctx = this.ctx;
+        const slug = this.ctx.params[0];
+        const post = await ctx.app.model.Post.findBySlug(slug);
+        if (post === null) {
+            ctx.status = 404;
+            return;
+        }
+        // view_num 加1
+        await post.increment('view_num');
         await ctx.helper.renderBlogView('page', {
+            post,
         });
     }
 

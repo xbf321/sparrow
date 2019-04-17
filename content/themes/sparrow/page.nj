@@ -3,8 +3,13 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-    <div class="page">
-        <pagecontent>
-        {% include "./partials/comment.nj" %}
-    </div>
+    <article class="post">
+        <h1 class="post__title">{{ post.title }}</h1>
+        <div class="post__content markdown-body">
+            {{ post.content | safe}}
+            <br />
+            -- EOF --
+        </div>
+    </article>
+    {% include "./partials/comment.nj" %}
 {% endblock %}

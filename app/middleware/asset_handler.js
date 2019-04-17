@@ -10,8 +10,8 @@ function safeDecodeURIComponent(text) {
 module.exports = () => {
     return async (ctx, next) => {
         const { app } = ctx;
-        const { themePath } = app.config;
-        const isProd = app.env === 'prod';
+        const { themePath, env } = app.config;
+        const isProd = env === 'prod';
         const prefix = '/asset/';
 
         if (ctx.method !== 'HEAD' && ctx.method !== 'GET')

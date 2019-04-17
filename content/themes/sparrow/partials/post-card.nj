@@ -11,7 +11,7 @@
         {% if post.summary %}
             {{ post.summary}}
         {% else %}
-            <a href="{{ post.url}}" title="{{ post.title}}" class="post-card__continue-reading">阅读全文 →</a>
+            <a href="{{ post.url}}" title="{{ post.title}}" class="link link--on">阅读全文 →</a>
         {% endif %}
     </div>
 </article>

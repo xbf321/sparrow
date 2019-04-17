@@ -4,6 +4,7 @@
 module.exports = app => {
     const { router, controller } = app;
     const authHandler = app.middlewares.authHandler();
+    const feNotFoundHandler = app.middlewares.feNotFoundHandler();
 
     // API
     router.post('/api/login', controller.api.login.index);
@@ -19,17 +20,17 @@ module.exports = app => {
 
     // 前台
     // page页
-    router.get(/^\/page\/([\w_-]+)\.html$/, controller.frontend.page);
+    router.get(/^\/page\/([\w_-]+)\.html$/, feNotFoundHandler, controller.frontend.page);
     // 归档
-    router.get(/^\/([1-2][0-9][0-9][0-9])\/?$/, controller.frontend.archive);
-    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/?$/, controller.frontend.archive);
+    router.get(/^\/([1-2][0-9][0-9][0-9])\/?$/, feNotFoundHandler, controller.frontend.archive);
+    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/?$/, feNotFoundHandler, controller.frontend.archive);
     // 详情页
-    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/([\w_-]+)\.html$/, controller.frontend.post);
+    router.get(/^\/([1-2][0-9][0-9][0-9])\/([0-1]{0,1}[0-9])\/([\w_-]+)\.html$/, feNotFoundHandler, controller.frontend.post);
     // Tag
-    router.get('/tag/:tagname', controller.frontend.tag);
+    router.get('/tag/:tagname', feNotFoundHandler, controller.frontend.tag);
     
     // 首页
-    router.get('/', controller.frontend.index);
+    router.get('/', feNotFoundHandler, controller.frontend.index);
 
     // 测试
     router.get('/test', controller.frontend.test);

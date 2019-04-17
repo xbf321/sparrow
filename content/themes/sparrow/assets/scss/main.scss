@@ -1,14 +1,22 @@
 body,
 html {
     font-family: Palatino,Times,arial,STSong,SimSun,serif;
+    font-size: 14px;
+    line-height: 1.5;
 }
 a {
-    color: #111;
     outline: 0;
     text-decoration: none;
+    color: #111;
 }
-.link:hover {
-    color: #a62425;
+
+.link {
+    &--on {
+        color: #a62425;
+    }
+    &:hover {
+        color: #a62425;
+    }
 }
 .ellipsis {
     overflow: hidden;
@@ -41,8 +49,8 @@ a {
     &__content {
         display: flex;
         margin: 0 auto;
-        max-width: 980px;
-        padding: 0 22px;
+        max-width: 1000px;
+        padding: 0 16px;
         position: relative;
         z-index: 2;
     }
@@ -117,10 +125,6 @@ a {
             }
         }
     }
-
-    &__continue-reading {
-        color: #a62425;
-    }
 }
 
 /*
@@ -137,14 +141,13 @@ a {
     &__content {
         font-size: 17px;
         line-height: 28px;
-        margin-bottom: 20px;
+        padding: 16px 0;
         width: 700px;
         overflow: hidden;
     }
 
     &__meta {
         margin-top: 10px;
-        margin-bottom: 20px;
         font-style: italic;
         color: #888;
         font-size: 14px;
@@ -225,6 +228,7 @@ a {
 
     &__content {
         color: rgba(0,0,0,.54);
+        font-size: 16px;
     }
 
     &__list {

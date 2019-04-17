@@ -140,6 +140,8 @@ module.exports = app => {
         return await this.findOne({
             where: {
                 slug,
+                // 0 为草稿，1 为已经发布
+                status: 1,
             },
         });
     };
