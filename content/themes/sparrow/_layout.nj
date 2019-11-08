@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="{% block keywords %}{{ settings.keywords }}{% endblock %}" />
     <meta name="description" content="{% block desc %}{{ settings.desc }}{% endblock %}" />
-    <link href='/asset/assets/images/favicon.ico' rel='icon' type='image/x-icon'/>
-    <link rel="stylesheet" href='/asset/assets/build/style.min.css' type='text/css' media='all'/>
-    <script crossorigin src="/asset/assets/js/prism.min.js"></script>
+    <link href='/themes/assets/images/favicon.ico' rel='icon' type='image/x-icon'/>
+    <link rel="stylesheet" href='/themes/assets/build/style.min.css' type='text/css' media='all'/>
+    <script crossorigin src="/themes/assets/js/prism.min.js"></script>
     {% block header %}{% endblock %}
   </head>
   <body>

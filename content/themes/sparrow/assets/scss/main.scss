@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body,
 html {
     font-family: Palatino,Times,arial,STSong,SimSun,serif;
@@ -9,7 +12,9 @@ a {
     text-decoration: none;
     color: #111;
 }
-
+svg {
+    transition: all .3s ease;
+}
 .link {
     &--on {
         color: #a62425;
@@ -211,6 +216,37 @@ a {
         transition: color .35s ease;
         line-height: 24px;
     }
+}
+
+.browser {
+    text-align: center;
+    line-height: 1;
+    transition: all 1.5s ease;
+    margin-bottom: 10px;
+}
+.browser .browser-top {
+    width: 100%;
+    max-width: 774px;
+    max-height: 30px;
+    height: 100%;
+    display: block;
+    margin: auto auto -1px;
+}
+.browser.aos-animate {
+    transform: translateY(0) scale(1);
+}
+.browser .code {
+    display: block;
+    background: #272c35;
+    max-width: 774px;
+    margin: auto;
+    color: #fff;
+    text-align: left;
+    padding: 20px;
+    border-radius: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    overflow-x: auto;
 }
 
 /*

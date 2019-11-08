@@ -12,7 +12,7 @@ module.exports = () => {
         const { app } = ctx;
         const { themePath, env } = app.config;
         const isProd = env === 'prod';
-        const prefix = '/asset/';
+        const prefix = '/themes/';
 
         if (ctx.method !== 'HEAD' && ctx.method !== 'GET')
             return await next();

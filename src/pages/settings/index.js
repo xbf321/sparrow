@@ -35,6 +35,8 @@ class Settings extends React.Component {
             about = '',
             title = '',
             keywords = '',
+            site_url = '',
+            footer_html = '',
         } = this.config;
         return (
             <Form>
@@ -65,6 +67,24 @@ class Settings extends React.Component {
                             initialValue: desc,
                             rules: [{ required: true, message: '不能为空' }],
                         })(<Input />)}
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <Form.Item label="站点地址">
+                        {getFieldDecorator('site_url', {
+                            initialValue: site_url,
+                        })(<Input placeholder="如果是根域名，留空即可，不要后边的反斜杠「/」"/>)}
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <Form.Item label="页脚HTML">
+                        {getFieldDecorator('footer_html', {
+                            initialValue: footer_html,
+                        })(<Input.TextArea rows={4} />)}
                         </Form.Item>
                     </Col>
                 </Row>

@@ -11,6 +11,9 @@ class PostsController extends Controller {
             if (result) {
                 result.value = body[key];
                 await result.save();
+            } else {
+                // create
+
             }
         }
         this.ctx.body = this.ctx.helper.success(true);;

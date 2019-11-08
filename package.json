@@ -4,6 +4,7 @@
   "description": "小而美博客系统",
   "private": true,
   "dependencies": {
+    "core-js": "^3.4.0",
     "egg": "^2.15.1",
     "egg-manifest": "^1.0.0",
     "egg-scripts": "^2.11.0",
