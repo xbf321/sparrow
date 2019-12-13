@@ -9,7 +9,7 @@ module.exports = app => {
     // API
     router.post('/api/login', controller.api.login.index);
     router.put('/api/settings', authHandler, controller.api.settings.update);
-    router.put('/api/posts/:uuid/meta', authHandler, controller.api.posts.meta);
+    // router.put('/api/posts/:uuid/meta', authHandler, controller.api.posts.meta);
     router.resources('posts', '/api/posts', authHandler, controller.api.posts);
     
     // 后台

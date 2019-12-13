@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://gw.alipayobjects.com/os/lib/es6-shim/0.35.5/??es6-sham.min.js,es6-shim.min.js"></script>
     <script crossorigin src="https://gw.alipayobjects.com/a/g/component/??react/16.4.0/react.production.min.js,react/16.4.0/react-dom.production.min.js,moment/2.14.1/moment.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.8.4/antd.min.css" />
+    {% include "./_antd.css.nj" %}
     {% block header %}{% endblock %}
   </head>
   <body>
