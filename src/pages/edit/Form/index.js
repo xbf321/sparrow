@@ -12,20 +12,18 @@ class Form extends React.Component {
         return (
             <div className="p-create-form">
                 <div className="title-wrapper">
-                    <div className="title-wrapper__line">
-                        <Input
-                            value={title}
-                            className="title-wrapper__input"
-                            placeholder="无标题"
-                            onChange={(e) => {
-                                onChange({
-                                    title: e.target.value,
-                                });
-                        }} />
-                    </div>
+                    <Input
+                        value={title}
+                        className="title-wrapper__input"
+                        placeholder="无标题"
+                        onChange={(e) => {
+                            onChange({
+                                title: e.target.value,
+                            });
+                    }} />
                 </div>
                 <CodeMirror
-                    className="content-wrapper"
+                    className="editor-wrapper"
                     options={{
                         mode: 'markdown',
                         lineWrapping: true,

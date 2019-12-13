@@ -1,0 +1,37 @@
+.widget {
+  &__title {
+    display: inline-block;
+    color: #ffffff;
+    background: #0d6763;
+    padding: 0.25rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.42857143;
+    margin-bottom: 1rem;
+  }
+  &__content {
+    padding-bottom: 1.5rem;
+  }
+  &__list {
+    list-style: none;
+    counter-reset: topics-counter;
+    &-item {
+      position: relative;
+      padding-left: 2.5rem;
+      font-size: calc(0.875rem + 1px);
+      line-height: 1.6;
+      font-weight: 500;
+
+      &::before {
+        counter-increment: topics-counter;
+        content: '0' counter(topics-counter);
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: #dddddd;
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+    }
+  }
+}

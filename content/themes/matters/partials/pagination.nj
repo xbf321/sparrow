@@ -1,0 +1,11 @@
+<nav class="pagination">
+    {% if pagination.pageIndex > 1 %}
+        {% set prev = pagination.pageIndex - 1 %}
+        <a href="{{prev | pagination}}" class="pagination__prev">&laquo; 上一页</a>
+    {% endif %}
+    {% if pagination.pageIndex < pagination.totalPages %}
+        {% set next = pagination.pageIndex + 1 %}
+        <a href="{{next | pagination}}" class="pagination__next">下一页 &raquo;</a>
+    {% endif %}
+</nav>
+      

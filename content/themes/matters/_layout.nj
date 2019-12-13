@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{{ settings.title }}{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="{% block keywords %}{{ settings.keywords }}{% endblock %}" />
+    <meta name="description" content="{% block desc %}{{ settings.desc }}{% endblock %}" />
+    <link href='/themes/assets/images/favicon.ico' rel='icon' type='image/x-icon'/>
+    <link rel="stylesheet" href='/themes/assets/build/matters.min.css' type='text/css' media='all'/>
+    {% block header %}{% endblock %}
+  </head>
+  <body>
+        <header class="header">
+            <div class="header__content">
+                <a href="/" class="header__site-title" title="{{ settings.title }}">{{ settings.title }}</a>
+                <ul class="nav-box">
+                    <li class="nav-box__item"><a href="/">首页</a></li>
+                    <li class="nav-box__item"><a href="https://github.com/xbf321">GITHUB</a></a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="container">
+            <div class="main">
+                {% block body %}{% endblock %}
+            </div>
+            {% block sidebar %}
+                <div class="sidebar">
+                    {% include "./partials/about.nj" %}
+                    {% include "./partials/hot.nj" %}
+                </div>
+            {% endblock %}
+        </div>
+        <footer class="footer">
+            基于 <a target="_blank" href="https://eggjs.org">Egg.js</a> & <a href="https://ant.design">AntD</a>
+        </footer>
+        {% block footer %}{% endblock %}
+  </body>
+</html>

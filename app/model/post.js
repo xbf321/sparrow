@@ -71,42 +71,27 @@ module.exports = app => {
                     }
                     const codeClass = !lang ? '' : this.options.langPrefix + escape(lang, true);
                     const codeHTML = (escaped ? code : escape(code, true));
-                    return `
-                        <section class="browser aos-animate">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="774" height="30" viewBox="0 0 774 30" class="browser-top">
-                                <g fill="none">
-                                <path fill="#272C35" d="M774 5v30.574H0V5a5 5 0 0 1 5-5h764a5 5 0 0 1 5 5z"></path>
-                                <g transform="translate(10.787 10.367)">
-                                    <circle cx="57.5" cy="7.5" r="7.5" fill="#2ACB42" opacity=".9"></circle>
-                                    <path fill="#FFC02F" d="M32.5 15a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15z"></path>
-                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#FF5F57"></circle>
-                                </g>
-                                </g>
-                            </svg> 
-                            <code class="code ${codeClass}">${codeHTML}</code>
-                        </section>
-                    `;
-                    // var lang = (infostring || '').match(/\S*/)[0];
-                    // if (this.options.highlight) {
-                    //     var out = this.options.highlight(code, lang);
-                    //     if (out != null && out !== code) {
-                    //         escaped = true;
-                    //         code = out;
-                    //     }
-                    // }
+                    var lang = (infostring || '').match(/\S*/)[0];
+                    if (this.options.highlight) {
+                        var out = this.options.highlight(code, lang);
+                        if (out != null && out !== code) {
+                            escaped = true;
+                            code = out;
+                        }
+                    }
 
-                    // if (!lang) {
-                    //     return '<pre><code>'
-                    //     + (escaped ? code : escape(code, true))
-                    //     + '</code></pre>';
-                    // }
+                    if (!lang) {
+                        return '<pre><code>'
+                        + (escaped ? code : escape(code, true))
+                        + '</code></pre>';
+                    }
 
-                    // return '<pre><code class="'
-                    //     + this.options.langPrefix
-                    //     + escape(lang, true)
-                    //     + '">'
-                    //     + (escaped ? code : escape(code, true))
-                    //     + '</code></pre>\n';
+                    return '<pre><code class="'
+                        + this.options.langPrefix
+                        + escape(lang, true)
+                        + '">'
+                        + (escaped ? code : escape(code, true))
+                        + '</code></pre>\n';
                 }
                 const result = marked(val, {
                     renderer,

@@ -49,39 +49,17 @@ class PostsController extends Controller {
         const {
             title,
             markdown_content,
-        } = this.ctx.request.body;
-        postInfo.title = title;
-        postInfo.markdown_content = markdown_content;
-        // 设置已发布
-        postInfo.status = 1;
-        const result = await postInfo.save();
-        this.ctx.body = this.ctx.helper.success(!!result);
-    }
-
-    // PUT
-    async meta() {
-        const loginUserId = 0;
-        const Post = this.ctx.app.model.Post;
-        const { uuid } = this.ctx.params;
-        const postInfo = await Post.findByUserIdAndUUID(loginUserId, uuid);
-        if(!postInfo) {
-            this.ctx.status = 404;
-            this.ctx.body = this.ctx.helper.fail('资源不存在');
-            return;
-        }
-        const {
             type = 0,
             slug = uuid,
             summary = '',
         } = this.ctx.request.body;
-
         // TODO
-        // 校验pslug 是否合法
+        // 校验 slug 是否合法
         // 只允许数字字母中行线或下划线
 
 
         // 检查路径是否重复
-        const isExits = await Post.findBySlug(postInfo.created_year, postInfo.created_month, slug);
+        const isExits = await this.ctx.app.model.Post.findBySlug(postInfo.created_year, postInfo.created_month, slug);
         if (!!isExits && isExits.uuid != uuid) {
             this.ctx.status = 400;
             this.ctx.body = this.ctx.helper.fail('验证失败，路径名冲突，有重复');
@@ -90,10 +68,11 @@ class PostsController extends Controller {
         postInfo.type = parseInt(type, 10) === 0 ? 0 : 1;
         postInfo.slug = slug;
         postInfo.summary = summary;
-        postInfo.save();
 
-        // 判断 path
-        this.ctx.body = this.ctx.helper.success(true);
+        postInfo.title = title;
+        postInfo.markdown_content = markdown_content;
+        const result = await postInfo.save();
+        this.ctx.body = this.ctx.helper.success(!!result);
     }
 
     async destroy() {

@@ -1,0 +1,30 @@
+@media (max-width:900px) {
+    .header {
+        min-width: auto;
+        &__content {
+            padding: 0 1rem;
+        }
+    }
+    .container {
+        margin-top: 0;
+        padding: 1rem;
+    }
+    .content {
+        width: 100%;
+        display: block;
+        padding: 0;
+    }
+    .sidebar {
+        display: none;
+    }
+    .post-nav {
+        display: block;
+
+        &__label--end {
+            justify-content: flex-start;
+        }
+    }
+    .footer {
+        padding-left: 1rem;
+    }
+}

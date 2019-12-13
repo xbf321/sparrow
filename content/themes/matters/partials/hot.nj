@@ -1,0 +1,10 @@
+<aside class="widget widget--hot">
+    <span class="widget__title">受欢迎文章</span>
+    <div class="widget__content">
+        <ol class="widget__list">
+            {% for post in hotPosts %}
+                <li class="ellipsis widget__list-item"><a href="{{ post.url}}" title="{{ post.title}}">{{ post.title}}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+</aside>

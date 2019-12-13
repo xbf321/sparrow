@@ -1,0 +1,19 @@
+{
+  "name": "matters-theme",
+  "description": "Matters皮肤",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "xbf321",
+    "email": "xbf321@gmail.com",
+    "url": "https://github.com/xbf321"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-hash": "^4.2.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2"
+  }
+}

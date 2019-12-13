@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, notification, Drawer } from 'antd';
+import { Affix, Row, Col, notification, Button } from 'antd';
 import axios from 'utils/axios';
 import { observable, action } from "mobx";
 import { observer } from 'mobx-react';
@@ -11,7 +11,6 @@ import './style.scss';
 class Create extends React.Component {
     @observable postInfo = {};
     @observable isLoadingForBtn = false;
-    @observable isShowDrawer = false;
     constructor(props) {
         super(props);
         const { uuid } = props.match.params;
@@ -31,19 +30,16 @@ class Create extends React.Component {
         }
     }
     @action
-    async handleSaveMetaInfo (meta = {}) {
-        const url = `${this.endpoint}/meta`;
-        await axios.put(url, meta);
-        this.isShowDrawer = false;
-    }
-    @action
     async handleSave() {
         this.isLoadingForBtn = true;
-        const result = await axios.put(this.endpoint, this.postInfo);
+        const result = await axios.put(this.endpoint, this.postInfo, {
+            status: 1,
+        });
         if (result) {
             notification.success({
                 message: '更新成功。',
-                description: `4秒跳转到「列表页」。`,
+                duration: 2,
+                description: `2秒跳转到「列表页」。`,
                 onClose: () => {
                     this.props.history.push({
                         pathname: '/pagesadmin/',
@@ -54,64 +50,46 @@ class Create extends React.Component {
         this.isLoadingForBtn = false;
     }
     @action
-    handleFormChange = (info = {}) => {
+    handleFormChange = async (info = {}) => {
         this.postInfo = Object.assign({}, this.postInfo, info);
-    }
-    @action
-    handelDrawerVisible = (visible = false) => {
-        this.isShowDrawer = visible;
+        await axios.put(this.endpoint, this.postInfo);
     }
     render() {
         const {
-                title = '',
-                markdown_content = '',
-                type,
-                slug,
-                summary,
+            title = '',
+            markdown_content = '',
+            type,
+            slug,
+            summary,
         } = this.postInfo;
         const extraInfoProps = {
             type,
             slug,
             summary,
-            onSubmit: this.handleSaveMetaInfo.bind(this),
+            onChange: this.handleFormChange.bind(this),
         };
         return (
             <div className="p-create">
-                <div className="action-bar">
-                    <Button
-                        icon="setting"
-                        onClick={() => {
-                            this.handelDrawerVisible(true);
-                        }}>其他信息</Button>
-                    <Button
-                        loading={this.isLoadingForBtn}
-                        icon="cloud-upload"
-                        type="primary"
-                        onClick={this.handleSave.bind(this)}
-                    >发布</Button>
-                </div>
-                <div className="editor-wrapper">
-                    <Form
-                        title={title}
-                        markdown_content={markdown_content}
-                        onChange={this.handleFormChange}
-                    />
-                </div>
-                <Drawer
-                    title="编辑扩展信息"
-                    width={420}
-                    onClose={() => {
-                        this.handelDrawerVisible(false);
-                    }}
-                    visible={this.isShowDrawer}
-                    style={{
-                        overflow: 'auto',
-                        height: 'calc(100% - 108px)',
-                        paddingBottom: '108px',
-                    }}
-                    >
-                    <ExtraInfo {...extraInfoProps} />
-                </Drawer>
+                <Row gutter={[16]}>
+                    <Col span={18}>
+                        <Form
+                            title={title}
+                            markdown_content={markdown_content}
+                            onChange={this.handleFormChange}
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <Affix offsetTop={10}>
+                            <ExtraInfo {...extraInfoProps} />
+                            <Button
+                                loading={this.isLoadingForBtn}
+                                icon="cloud-upload"
+                                type="primary"
+                                onClick={this.handleSave}
+                            >发布</Button>
+                        </Affix>
+                    </Col>
+                </Row>
             </div>
         );
     }

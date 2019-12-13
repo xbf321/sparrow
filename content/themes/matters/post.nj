@@ -1,0 +1,46 @@
+{% extends "./_layout.nj" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block header %}
+    <meta content='{{post.title}}' property='og:title'/>
+    <meta content='{{post.summary}}' property='og:description'/>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block body %}
+    <article class="post">
+        <h1 class="post__title">{{ post.title }}</h1>
+        <div class="post__meta">
+            更新：<time class="post__date">{{ post.updated_at_short}}</time> / 发布：<time class="post__date">{{ post.created_at_short }}</time> / 共<span class="post__date post__date--no"> {{ post.view_num}} 次围观</span>
+        </div>
+        <div class="post__content">
+            {{ post.content | safe}}
+            <br />
+            -- EOF --
+        </div>
+        
+        <div class="post-nav">
+            {% if post.prev.title %}
+                <div class="post-nav__prev">
+                    <a class="post-nav__pager">
+                        <div class="post-nav__label">上一篇</div>
+                        <a class="post-nav__title" href="{{ post.prev.url}}" title="{{ post.prev.title}}">{{ post.prev.title}}</a>
+                    </a>
+                </div>
+            {% endif %}
+
+            {% if post.next.title %}
+                <div class="post-nav__next">
+                    <a class="post-nav__pager">
+                        <div class="post-nav__label post-nav__label--end">下一篇</div>
+                        <a class="post-nav__title" href="{{ post.next.url}}" title="{{ post.next.title}}">{{ post.next.title}}</a>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        {% include "./partials/comment.nj" %}
+    </article>
+{% endblock %}
